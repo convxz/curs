@@ -1,4 +1,6 @@
 import numpy as np
+import tkinter as tk
+from tkinter import ttk
 
 
 def eliminate_zeros(matrix):
@@ -39,9 +41,27 @@ def gauss(a: np.zeros) -> np.zeros:
     return x
 
 
-a = np.zeros((3, 4))
-for i in range(0, 3):
-    for j in range(0, 4):
-        a[i][j] = int(input())
+class Main(tk.Frame):
+    def __init__(self, root):
+        super(Main, self).__init__(root)
+        self.build()
 
-print(gauss(a))
+    def build(self):
+        self.formula = "0"
+        self.lbl = tk.Label(text=self.formula, font="Century 15", bg="#000", foreground="#FFF")
+        self.lbl.place(x=11, y=50)
+        self.m = ttk.Entry(root, font='Century 12', width=40)
+        self.m.pack(pady=30)
+        self.n = ttk.Entry(root, font='Century 12', width=40)
+        self.n.pack(pady=30)
+        # b = ttk.Button(root, text="Enter", command=)  !!! надо создать команду, которая будет сохранять значения из m
+        # и n и решать систему уравнений
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    root["bg"] = "#000"
+    root.geometry("600x400+300+100")
+    root.resizable(False, False)
+    app = Main(root)
+    app.pack()
+    root.mainloop()
