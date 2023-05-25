@@ -47,19 +47,40 @@ class Main(tk.Frame):
         self.build()
 
     def build(self):
-        self.formula = "0"
-        self.lbl = tk.Label(text=self.formula, font="Century 15", bg="#000", foreground="#FFF")
-        self.lbl.place(x=11, y=50)
-        self.m = ttk.Entry(root, font='Century 12', width=40)
-        self.m.pack(pady=30)
-        self.n = ttk.Entry(root, font='Century 12', width=40)
-        self.n.pack(pady=30)
+        self.m = ttk.Entry(root, font='Century 12', width=20)
+        self.m.pack(anchor=tk.NW)
+        self.n = ttk.Entry(root, font='Century 12', width=20)
+        self.n.pack(pady=5, anchor=tk.NW)
+        self.enter = ttk.Button(text="Enter", command=self.get_vals)
+        self.enter.pack()
+
         # b = ttk.Button(root, text="Enter", command=)  !!! надо создать команду, которая будет сохранять значения из m
         # и n и решать систему уравнений
 
+    def get_vals(self):
+        m = self.m.get()
+        n = self.n.get()
+        self.n.destroy()
+        self.m.destroy()
+        self.enter.destroy()
+        self.n = n
+        self.m = m
+        self.res = ttk.Button(text="Reset", command=self.reset)
+        self.res.pack()
+
+    def reset(self):
+        self.m = ttk.Entry(root, font='Century 12', width=20)
+        self.m.pack(anchor=tk.NW)
+        self.n = ttk.Entry(root, font='Century 12', width=20)
+        self.n.pack(pady=5, anchor=tk.NW)
+        self.enter = ttk.Button(text="Enter", command=self.get_vals)
+        self.enter.pack()
+        self.res.destroy()
+
+
 if __name__ == "__main__":
     root = tk.Tk()
-    root["bg"] = "#000"
+    root["bg"] = "#cfd47d"
     root.geometry("600x400+300+100")
     root.resizable(False, False)
     app = Main(root)
