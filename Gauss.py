@@ -53,9 +53,35 @@ class Main(tk.Frame):
         self.n.pack(pady=5, anchor=tk.NW)
         self.enter = ttk.Button(text="Enter", command=self.get_vals)
         self.enter.pack()
+        self.test = ttk.Button(text="tests", command=self.tests)
+        self.test.pack()
 
         # b = ttk.Button(root, text="Enter", command=)  !!! надо создать команду, которая будет сохранять значения из m
         # и n и решать систему уравнений
+
+    def tests(self):
+        self.test.destroy()
+        self.n.destroy()
+        self.m.destroy()
+        self.enter.destroy()
+        x1 = np.zeros((2, 3))
+        x1[0][0], x1[0][1], x1[0][2], x1[1][0], x1[1][1], x1[1][2] = 1, -1, -5,  0, 1, 1
+        x2 = np.zeros((2, 3))
+        x2[0][0], x2[0][1], x2[0][2], x2[1][0], x2[1][1], x2[1][2] = 3, 2, 2, 4, 1, 6
+        x3 = np.zeros((2, 3))
+        x3[0][0], x3[0][1], x3[0][2], x3[1][0], x3[1][1], x3[1][2] = 1, -1, 4, 1, 2, 10
+        x4 = np.zeros((2, 3))
+        x4[0][0], x4[0][1], x4[0][2], x4[1][0], x4[1][1], x4[1][2] = 1, 5, 7, 3, 4, 2
+        self.x1_l = ttk.Label(text=f"{x1} -> {gauss(x1)}")
+        self.x2_l = ttk.Label(text=f"{x2} -> {gauss(x2)}")
+        self.x3_l = ttk.Label(text=f"{x3} -> {gauss(x3)}")
+        self.x4_l = ttk.Label(text=f"{x4} -> {gauss(x4)}")
+        self.x1_l.pack(anchor=tk.NW)
+        self.x2_l.pack(anchor=tk.NW)
+        self.x3_l.pack(anchor=tk.NW)
+        self.x4_l.pack(anchor=tk.NW)
+        self.res_test = ttk.Button(text="Reset", command=self.res_tests)
+        self.res_test.pack()
 
     def get_vals(self):
         m = self.m.get()
@@ -77,6 +103,19 @@ class Main(tk.Frame):
         self.enter.pack()
         self.res.destroy()
 
+    def res_tests(self):
+        self.x1_l.destroy()
+        self.x2_l.destroy()
+        self.x3_l.destroy()
+        self.x4_l.destroy()
+        self.m = ttk.Entry(root, font='Century 12', width=20)
+        self.m.pack(anchor=tk.NW)
+        self.n = ttk.Entry(root, font='Century 12', width=20)
+        self.n.pack(pady=5, anchor=tk.NW)
+        self.enter = ttk.Button(text="Enter", command=self.get_vals)
+        self.enter.pack()
+        self.test = ttk.Button(text="tests", command=self.tests)
+        self.test.pack()
 
 if __name__ == "__main__":
     root = tk.Tk()
